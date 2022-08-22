@@ -16,15 +16,17 @@ sidebar_position: 10
 
 ## What's a fungible smart contract (ERC-20)?
 
-A fungible smart contract is a standard for the implementation of fungible token. A token can represent anything in the blockchain, for an example lottery ticket or financial tools. All the tokens created by the smart contract are equal to any other tokens, so no tokens have special rights or behavior associated with them.
+A fungible smart contract is an implementation of the **token concept** in the blockchain. A token can represent anything, for example a lottery ticket or financial tools. All the tokens created by the smart contract are equal to any other tokens, so no tokens have special rights or behavior associated with them.
 
 The functions that a fungible smart contract must have are the following:
-- transfer tokens between one account to another
+- transfer token between one account to another
 - request the current token balance of an account
-- approve that an amount of an account's tokens can be spent by a third-party account
-- the general information about the tokens like name, symbol and total supply
+- approve that an amount of an account's token can be spent by a third-party account
+- the general information about the token like name, symbol and total supply
 
 To perform all its functions, the fungible smart contract keeps track internally of all the balances of users having its token. The important concept for newcomers to understand is that when one account transfers a token to another, he simply asks the token's smart contract to update the balance of the two accounts involved. It's the smart contract that will handle the transfer and perform the check on the validity of the transaction.
+
+To handle these important features, it was created a standard interface called **ERC-20**. This allows developers to build token applications that are interoperable with other products and services. Currently ERC-20 is used by the major of project in the crypto world.
 
 #### Code example of ERC-20 interface
 ```solidity
@@ -40,9 +42,9 @@ interface IERC20 {
 
     function transfer(address to, uint256 amount) external returns (bool);
 
-    function allowance(address owner, address spender) external view returns (uint256);
-
     function approve(address spender, uint256 amount) external returns (bool);
+
+    function allowance(address owner, address spender) external view returns (uint256);
 
     function transferFrom(
         address from,
@@ -51,6 +53,16 @@ interface IERC20 {
     ) external returns (bool);
 }
 ```
+The functions described above ensure that the characteristics of fungible smart contract are respected. A brief explanation of what they do:
+
+- **totalSupply:** returns the amount of tokens in existence
+- **balanceOf:** returns the amount of tokens owned by `account`
+- **transfer:** moves `amount` tokens from the caller’s account to another user
+- **approve:** allow `spender` to spend the `amount` tokens of caller's account
+- **allowance:** returns the remaining number of tokens that `spender` will be allowed to spend on behalf of `owner` through `transferFrom`
+- **transferFrom:** moves `amount` tokens from `from` to `to` using the allowance mechanism. `amount` is then deducted from the caller’s allowance.
+
+[*Read the complete explanation on OpenZeppelin docs*](https://docs.openzeppelin.com/contracts/4.x/api/token/erc20)
 
 ## What's the differences between a non-fungible (ERC-721) and fungible (ERC-20) smart contract?
 
@@ -91,12 +103,13 @@ At the moment, Immutable X supports only whitelisted ERC-20 tokens (IMX, GODS an
 :::
 
 ## How can you mint tokens from a fungible smart contract?
+Fungible smart contract should implement [Mintable](https://github.com/immutable/imx-contracts/blob/main/contracts/IMintable.sol) interface and use `mintFor` function to be able to mint on L2. It's important to note that Immutable X currently supports only [StarkEx](https://starkware.co/starkex/) zk-rollup, which is like an application handled by Immutable but with the security of Ethereum network. So, before transferring a token from L1 to L2 and should mint or trade, the Immutable team has to whitelist it.
 
-A fungible smart contract that implements `Capped` functionality allows users to mint tokens. Naturally, only a few users with special permission described in the smart contract have the privileges to execute this function.
-Immutable X implementation of an ERC-20 token is based on [OpenZeppelin's Cairo implementations](https://github.com/OpenZeppelin/cairo-contracts), so the `mint` function is supported.
-The owners of the fungible smart contract can choose if mint tokens on L1 and transfer to L2 or mint directly on L2.
+Soon, Immutable X will also support [StarkNet](https://starkware.co/starknet/) zk-rollup, which [works differently](https://starknet.io/faq/difference-between-starkex-and-starknet/) than StarkEx and will aim to deploy customized smart contracts. Immutable X [implementation](https://github.com/immutable/imx-starknet/blob/main/docs/erc20.md) on StarkNet of an ERC-20 token is based on [OpenZeppelin's Cairo implementations](https://github.com/OpenZeppelin/cairo-contracts) and the `mint` function is supported again. In this case, anyone can transfer their tokens from L1 to L2 and be able to use them.
 
-[*Read more about ERC-20 implementation on Immutable X*](https://github.com/immutable/imx-starknet/blob/main/docs/erc20.md)
+[*Read more about interoperability between the rollups on Immutable X*](https://immutablex.medium.com/immutable-starknet-cross-rollup-nft-liquidity-b32df88cda02)
+
+
 
 
 
