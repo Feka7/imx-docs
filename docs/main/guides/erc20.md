@@ -102,10 +102,10 @@ Remember that all the actions where interaction with L1 is required have gas cos
 At the moment, Immutable X supports only whitelisted ERC-20 tokens (IMX, GODS and USDC).
 :::
 
-## How can you mint tokens from a fungible smart contract?
-Fungible smart contract should implement [Mintable](https://github.com/immutable/imx-contracts/blob/main/contracts/IMintable.sol) interface and use `mintFor` function to be able to mint on L2. It's important to note that Immutable X currently supports only [StarkEx](https://starkware.co/starkex/) zk-rollup, which is like an application handled by Immutable but with the security of Ethereum network. So, before transferring a token from L1 to L2 and should mint or trade, the Immutable team has to whitelist it.
+## Can you mint tokens from a fungible smart contract on L2?
+For now, you can't mint directly on L2. It's important to note that Immutable X currently supports only [StarkEx](https://starkware.co/starkex/) zk-rollup, which is like an application handled by Immutable but with the security of Ethereum network. So, before transferring a token from L1 to L2 and should trading with it, the Immutable team has to whitelist it.
 
-Soon, Immutable X will also support [StarkNet](https://starkware.co/starknet/) zk-rollup, which [works differently](https://starknet.io/faq/difference-between-starkex-and-starknet/) than StarkEx and will aim to deploy customized smart contracts. Immutable X [implementation](https://github.com/immutable/imx-starknet/blob/main/docs/erc20.md) on StarkNet of an ERC-20 token is based on [OpenZeppelin's Cairo implementations](https://github.com/OpenZeppelin/cairo-contracts) and the `mint` function is supported again. In this case, anyone can transfer their tokens from L1 to L2 and be able to use them.
+Soon, Immutable X will also support [StarkNet](https://starkware.co/starknet/) zk-rollup, which [works differently](https://starknet.io/faq/difference-between-starkex-and-starknet/) than StarkEx and will aim to deploy customized smart contracts. Immutable X [implementation](https://github.com/immutable/imx-starknet/blob/main/docs/erc20.md) on StarkNet of an ERC-20 token is based on [OpenZeppelin's Cairo implementations](https://github.com/OpenZeppelin/cairo-contracts) and the `mint` function is supported. In this case, anyone can transfer their tokens from L1 to L2 and be able to use them.
 
 [*Read more about interoperability between the rollups on Immutable X*](https://immutablex.medium.com/immutable-starknet-cross-rollup-nft-liquidity-b32df88cda02)
 
