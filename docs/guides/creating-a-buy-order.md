@@ -31,8 +31,17 @@ import { generateStarkWallet } from '@imtbl/core-sdk';
 
 const ethNetwork = 'ropsten'; // or mainnet;
 
+// Create the configuration for connecting to Immutable X
+const ImxConfig = {
+  coreContractAddress: "0x4527BE8f31E2ebFbEF4fCADDb5a17447B27d2aef", // or 0x5FDCCA53617f4d2b9134B29090C87D01058e27e9 for mainnet
+  registrationContractAddress: "0x6C21EC8DE44AE44D0992ec3e2d9f1aBb6207D864", // or 0x72a06bf2a1CE5e39cBA06c0CAb824960B587d64c for mainnet
+  chainID: 3, // or 1 for mainnet
+  basePath: "https://api.ropsten.x.immutable.com", // or https://api.x.immutable.com for mainnet
+  headers: { "Content-Type": "application/json" },
+}
+
 // Use the helper function to get the config
-const config = getConfig(ethNetwork);
+const config = getConfig(ImxConfig);
 const workflow = new Workflows(config);
 
 // Setup a provider
@@ -97,7 +106,7 @@ let requestOrder = {
 
 // Execute
 const l2SignerOrder = new BaseSigner(starkWalletOrder.starkKeyPair);
-const response = await workflow.createOrderWithSigner(
+const response = await workflow.createOrder(
   { l1Signer: signerOrder, l2Signer: l2SignerOrder },
   requestOrder
 );
@@ -135,7 +144,7 @@ let requestTrade = {
 
 // Execute
 const l2SignerTrade = new BaseSigner(starkWalletTrade.starkKeyPair);
-const response = await workflow.createTradeWithSigner(
+const response = await workflow.createTrade(
   { l1Signer: signerTrade, l2Signer: l2SignerTrade },
   requestTrade
 );
@@ -158,7 +167,7 @@ let cancelOrder = {
 
 // Execute
 const l2SignerOrder = new BaseSigner(starkWalletOrder.starkKeyPair);
-const response = await workflow.cancelOrderWithSigner(
+const response = await workflow.cancelOrder(
   {l1Signer: signerOrder, l2Signer: l2SignerOrder },
   cancelOrder
 );
