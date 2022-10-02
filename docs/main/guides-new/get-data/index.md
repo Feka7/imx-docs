@@ -156,7 +156,6 @@ Get details about a project that you own.
 <Tabs>
 <TabItem value="typescript" label="Typescript Core SDK">
 
-
 #### Request parameters
 
 | Parameter   | Description                  | Value                                      |
@@ -265,7 +264,7 @@ Get list of collections that include a specified word in their name.
 | :-------- | :--------------------------------------------------- | :---- |
 | _keyword_ | Keyword to search in collection name and description | NFT   |
 
-View all query parameters in [CollectionsApiListCollectionsRequest](../../../../api-docs/sdk-references/core-sdk-ts/0-6-0/interfaces/CollectionsApiListCollectionsRequest.html) interface
+View all query parameters in [CollectionsApiListCollectionsRequest](https://docs.x.immutable.com/sdk-references/core-sdk-ts/1.0.0-beta.2/interfaces/index.collectionsapilistcollectionsrequest) interface
 
 #### Example
 
@@ -382,7 +381,7 @@ Get details of a collection at the given address.
 | :-------- | :-------------------------- | :----------------------------------------- |
 | _address_ | Collection contract address | 0x61e506cec264d5b2705f10e5a934dc5313a56a6e |
 
-View all query parameters in [CollectionsApiGetCollectionRequest](../../../../api-docs/sdk-references/core-sdk-ts/0-6-0/interfaces/CollectionsApiGetCollectionRequest.html) interface
+View all query parameters in [CollectionsApiGetCollectionRequest](https://docs.x.immutable.com/sdk-references/core-sdk-ts/1.0.0-beta.2/interfaces/index.collectionsapigetcollectionrequest) interface
 
 #### Example
 
@@ -487,7 +486,7 @@ Get the list of assets by specified collection order by name.
 | _collection_ | Contract address of the collection | 0x23db0e72bd7738da0d0afe7bccb4109f5f05edcf |
 | _orderBy_    | Property to sort the response      | name                                       |
 
-View all query parameters in [AssetsApiListAssetsRequest](../../../../api-docs/sdk-references/core-sdk-ts/0-6-0/interfaces/AssetsApiListAssetsRequest.html) interface
+View all query parameters in [AssetsApiListAssetsRequest](https://docs.x.immutable.com/sdk-references/core-sdk-ts/1.0.0-beta.2/interfaces/index.assetsapilistassetsrequest) interface
 
 #### Example
 
@@ -626,7 +625,7 @@ Get details about an asset that you got in the previusly [example](#get-list-of-
 | _tokenId_      | Token ID of the asset                  | 1                                          |
 | _includeFees_  | Include fees associated with the asset | true                                       |
 
-View all query parameters in [AssetsApiGetAssetRequest](../../../../api-docs/sdk-references/core-sdk-ts/0-6-0/interfaces/AssetsApiGetAssetRequest.html) interface
+View all query parameters in [AssetsApiGetAssetRequest](https://docs.x.immutable.com/sdk-references/core-sdk-ts/1.0.0-beta.2/interfaces/index.assetsapigetassetrequest) interface
 
 #### Example
 
@@ -764,7 +763,7 @@ Get the list of all orders that contain asset of a given collection listed in ET
 | _sellTokenAddres_ | Collection address of the asset this order sells | 0x61e506cec264d5b2705f10e5a934dc5313a56a6e |
 | _buyTokenType_    | Token type of the asset this order buys          | ETH                                        |
 
-View all query parameters in [OrdersApiListOrdersRequest](../../../../api-docs/sdk-references/core-sdk-ts/0-6-0/interfaces/OrdersApiListOrdersRequest.html) interface
+View all query parameters in [OrdersApiListOrdersRequest](https://docs.x.immutable.com/sdk-references/core-sdk-ts/1.0.0-beta.2/interfaces/index.ordersapilistordersrequest) interface
 
 #### Example
 
@@ -938,7 +937,7 @@ Get details about an order included fees.
 | _id_          | Order ID                               | 1506  |
 | _includeFees_ | Include fees associated with the asset | true  |
 
-View all query parameters in [OrdersApiListOrdersRequest](../../../../api-docs/sdk-references/core-sdk-ts/0-6-0/interfaces/OrdersApiListOrdersRequest.html) interface
+View all query parameters in [OrdersApiGetOrderRequest](https://docs.x.immutable.com/sdk-references/core-sdk-ts/1.0.0-beta.2/interfaces/index.ordersapigetorderrequest) interface
 
 #### Example
 
@@ -1107,7 +1106,7 @@ Get list of the last 5 transfer made on Immutable X.
 | _orderBy_  | Property to sort the response | updated_at |
 | _pageSize_ | Page size of the result       | 5          |
 
-View all query parameters in [TransfersApiListTransfersRequest](../../../../api-docs/sdk-references/core-sdk-ts/0-6-0/interfaces/TransfersApiListTransfersRequest.html) interface
+View all query parameters in [TransfersApiListTransfersRequest](https://docs.x.immutable.com/sdk-references/core-sdk-ts/1.0.0-beta.2/interfaces/index.transfersapilisttransfersrequest) interface
 
 #### Example
 
@@ -1240,7 +1239,7 @@ Get details about a transfer by ID.
 | :-------- | :---------- | :---- |
 | _id_      | Order ID    | 56775 |
 
-View all query parameters in [TransferRequest](../../../../api-docs/sdk-references/core-sdk-ts/0-6-0/interfaces/TransferRequest.html) interface
+View all query parameters in [TransferRequest](https://docs.x.immutable.com/sdk-references/core-sdk-ts/1.0.0-beta.2/interfaces/index.transfersapigettransferrequest) interface
 
 #### Example
 
@@ -1354,7 +1353,7 @@ Get list of tokens avaiable on Immutable X.
 | :-------- | :---------------------------- | :--------------- |
 | _orderBy_ | Property to sort the response | contract_address |
 
-View all query parameters in [TokensApiListTokensReques](../../../../api-docs/sdk-references/core-sdk-ts/0-6-0/interfaces/TokensApiListTokensRequest.html) interface
+View all query parameters in [TokensApiListTokensRequest](https://docs.x.immutable.com/sdk-references/core-sdk-ts/1.0.0-beta.2/interfaces/index.tokensapilisttokensrequest) interface
 
 #### Example
 
@@ -1455,7 +1454,7 @@ Get details about a token by given address.
 | :-------- | :---------------------------- | :----------------------------------------- |
 | _address_ | Ethereum address of the token | 0x1facdd0165489f373255a90304650e15481b2c85 |
 
-View all query parameters in [TokensApiGetTokenRequest](../../../../api-docs/sdk-references/core-sdk-ts/0-6-0/interfaces/TokensApiGetTokenRequest.html) interface
+View all query parameters in [TokensApiGetTokenRequest](https://docs.x.immutable.com/sdk-references/core-sdk-ts/1.0.0-beta.2/interfaces/index.tokensapigettokenrequest) interface
 
 #### Example
 
@@ -1548,7 +1547,7 @@ Get the last 5 trades with ETH made on Immutable X.
 | _partyATokenType_ | Token type of currency used to buy | ETH   |
 | _pageSize_        | Page size of the result            | 5     |
 
-View all query parameters in [TradesApiListTradesRequest](../../../../api-docs/sdk-references/core-sdk-ts/0-6-0/interfaces/TradesApiListTradesRequest.html) interface
+View all query parameters in [TradesApiListTradesRequest](https://docs.x.immutable.com/sdk-references/core-sdk-ts/1.0.0-beta.2/interfaces/index.tradesapilisttradesrequest) interface
 
 #### Example
 
@@ -1674,7 +1673,7 @@ Get details about a trade by ID.
 | :-------- | :---------- | :---- |
 | _id_      | Trade ID    | 56715 |
 
-View all query parameters in [TradesApiGetTradeRequest](../../../../api-docs/sdk-references/core-sdk-ts/0-6-0/interfaces/TradesApiGetTradeRequest.html) interface
+View all query parameters in [TradesApiGetTradeRequest](https://docs.x.immutable.com/sdk-references/core-sdk-ts/1.0.0-beta.2/interfaces/index.tradesapigettraderequest) interface
 
 #### Example
 
@@ -1786,7 +1785,7 @@ getTrade('56715')
 | :----------- | :--------------------------- | :----------------------------------------- |
 | _ethAddress_ | Ethereum address of the user | 0x5D680Fbb3e60deCAbF62DfcACc56DB7d5964736a |
 
-View all query parameters in [UsersApiGetUsersRequest](../../../../api-docs/sdk-references/core-sdk-ts/0-6-0/interfaces/UsersApiGetUsersRequest.html) interface
+View all query parameters in [UsersApiGetUsersRequest](https://docs.x.immutable.com/sdk-references/core-sdk-ts/1.0.0-beta.2/interfaces/index.getusersapiresponse) interface
 
 #### Example
 
@@ -1858,7 +1857,7 @@ getUserStarkKeys('0x5D680Fbb3e60deCAbF62DfcACc56DB7d5964736a')
 | :-------- | :--------------------------- | :----------------------------------------- |
 | _owner_   | Ethereum address of the user | 0x5D680Fbb3e60deCAbF62DfcACc56DB7d5964736a |
 
-View all query parameters in [BalancesApiListBalancesRequest](../../../../api-docs/sdk-references/core-sdk-ts/0-6-0/interfaces/BalancesApiListBalancesRequest.html) interface
+View all query parameters in [BalancesApiListBalancesRequest](https://docs.x.immutable.com/sdk-references/core-sdk-ts/1.0.0-beta.2/interfaces/index.balancesapilistbalancesrequest) interface
 
 #### Example
 
@@ -1942,19 +1941,21 @@ getListBalances('0x5D680Fbb3e60deCAbF62DfcACc56DB7d5964736a')
 
 <Tabs>
   <TabItem value="typescript" label="Typescript Core SDK">
-    
-  #### Request parameters
+
+
+#### Request parameters
 
 | Parameter | Description                        | Value                                      |
 | :-------- | :--------------------------------- | :----------------------------------------- |
 | _owner_   | Ethereum address of the user       | 0x5D680Fbb3e60deCAbF62DfcACc56DB7d5964736a |
 | _address_ | Token address to check the balance | 0x1facdd0165489f373255a90304650e15481b2c85 |
 
-View all query parameters in [BalancesApiGetBalanceRequest](../../../../api-docs/sdk-references/core-sdk-ts/0-6-0/interfaces/BalancesApiGetBalanceRequest.html) interface
+View all query parameters in [BalancesApiGetBalanceRequest](https://docs.x.immutable.com/sdk-references/core-sdk-ts/1.0.0-beta.2/interfaces/index.balancesapigetbalancerequest) interface
 
 #### Example
 
 ```ts
+
 const getBalanceToken = async (owner: string, address: string) => {
   const response = await client.getBalance({
     owner,
