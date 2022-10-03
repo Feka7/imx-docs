@@ -36,6 +36,8 @@ Getting data is read-only, so user authentication or [getting user signatures](.
 
 ## Projects
 
+The methods in this section are the only one out of all these endpoints that require a user signature. This is because only the owners of projects can get details about them. For generate **user signature** follow this [guide](../generate-signers/index.mdx). 
+
 ### Get list of projects
 
 Get list of projects that you own.
@@ -47,7 +49,7 @@ Get list of projects that you own.
 
 | Parameter   | Description                  | Value                                      |
 | :---------- | :--------------------------- | :----------------------------------------- |
-| _ethSigner_ | Ethereum address of the user | 0x5D680Fbb3e60deCAbF62DfcACc56DB7d5964736a |
+| _ethSigner_ | L1 signer | 0x5D680Fbb3e60deCAbF62DfcACc56DB7d5964736a |
 
 View all query parameters in [ProjectsApiGetProjectsRequest](../../../../api-docs/sdk-references/core-sdk-ts/0-6-0/interfaces/ProjectsApiGetProjectsRequest.html) interface
 
