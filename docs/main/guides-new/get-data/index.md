@@ -36,24 +36,18 @@ Getting data is read-only, so user authentication or [getting user signatures](.
 
 ## Projects
 
-The methods in this section are the only one out of all these endpoints that require a user signature. This is because only the owners of projects can get details about them. For generate **user signature** follow this [guide](../generate-signers/index.mdx). 
+The methods in this section are the only one out of all these endpoints that require a user signature. This is because only the owners of projects can get details about them. For generate **user signature** follow this [guide](../generate-signers/index.mdx).
 
 ### Get list of projects
 
-Get list of projects that you own.
+Get the list of projects that the Ethereum account owns.
 
 <Tabs>
   <TabItem value="typescript" label="Typescript Core SDK">
 
-#### Request parameters
+SDK reference: [getProjects](../../../../api-docs/sdk-references/core-sdk-ts/0-6-0/interfaces/ProjectsApiGetProjectsRequest.html)
 
-| Parameter   | Description                  | Value                                      |
-| :---------- | :--------------------------- | :----------------------------------------- |
-| _ethSigner_ | L1 signer | 0x5D680Fbb3e60deCAbF62DfcACc56DB7d5964736a |
-
-View all query parameters in [ProjectsApiGetProjectsRequest](../../../../api-docs/sdk-references/core-sdk-ts/0-6-0/interfaces/ProjectsApiGetProjectsRequest.html) interface
-
-#### Example
+### Request
 
 ```ts
 const getProjects = async (ethSigner: Wallet) => {
@@ -71,51 +65,28 @@ getProjects(ethSigner)
   });
 ```
 
-#### Response
+### Example response
 
 ```ts
 {
   result: [
     {
-      //The project ID
-      id: 145,
-
-      //The project name
-      name: 'Test writer guild',
-
-      //The company name
-      company_name: 'Test Immutable company',
-
-      //The project contact email
-      contact_email: 'immutabletest@example.com',
-
-      //The number of mint operation remaining in the current period
-      mint_remaining: 0,
-
-      //The current period expiry date for mint operation limit
-      mint_limit_expires_at: '2022-10-01T17:41:44.650487Z',
-
-      //The total monthly mint operation limit
-      mint_monthly_limit: 0,
-
-      //The number of collection remaining in the current period
-      collection_remaining: 0,
-
-      //The current period expiry date for collection limit
-      collection_limit_expires_at: '2022-10-01T17:41:44.650487Z',
-
-      //The total monthly collection limit
-      collection_monthly_limit: 0
+      id: 145, // The project ID
+      name: 'Test writer guild', // The project name
+      company_name: 'Test Immutable company', // The company name
+      contact_email: 'immutabletest@example.com', // The project contact email
+      mint_remaining: 0, // The number of mint operation remaining in the current period
+      mint_limit_expires_at: '2022-10-01T17:41:44.650487Z', // The current period expiry date for mint operation limit
+      mint_monthly_limit: 0,  // The total monthly mint operation limit
+      collection_remaining: 0, // The number of collection remaining in the current period
+      collection_limit_expires_at: '2022-10-01T17:41:44.650487Z', // The current period expiry date for collection
+      collection_monthly_limit: 0 // The total monthly collection limit
     },
-
-    //other projects
+   // Other projects returned
     ...
   ],
-
-  //Generated cursor returned by previous query
   cursor: 'eyJwcm9qZWN0X2lkIjoxNDUsIm5hbWUiOiJUZXN0IHdyaXRlciBndWlsZCIsImNvbXBhbnlfbmFtZSI6IlRlc3QgSW1tdXRhYmxlIGNvbXBhbnkiLCJjb250YWN0X2VtYWlsIjoiaW1tdXRhYmxldGVzdEBleGFtcGxlLmNvbSIsIm1pbnRfcmVtYWluaW5nIjowLCJtaW50X2xpbWl0X2V4cGlyZXNfYXQiOiIyMDIyLTEwLTAxVDE3OjQxOjQ0LjY1MDQ4N1oiLCJtaW50X21vbnRobHlfbGltaXQiOjAsImNvbGxlY3Rpb25fcmVtYWluaW5nIjowLCJjb2xsZWN0aW9uX2xpbWl0X2V4cGlyZXNfYXQiOiIyMDIyLTEwLTAxVDE3OjQxOjQ0LjY1MDQ4N1oiLCJjb2xsZWN0aW9uX21vbnRobHlfbGltaXQiOjB9',
-
-  //Remaining results flag. 1: there are remaining results matching this query, 0: no remaining results
+  // Remaining results
   remaining: 0
 }
 
@@ -153,21 +124,14 @@ getProjects(ethSigner)
 
 ### Get details about a project
 
-Get details about a project that you own.
-
 <Tabs>
 <TabItem value="typescript" label="Typescript Core SDK">
 
-#### Request parameters
+SDK reference: [getProject](../../../../api-docs/sdk-references/core-sdk-ts/0-6-0/interfaces/ProjectsApiGetProjectRequest.html)
 
-| Parameter   | Description                  | Value                                      |
-| :---------- | :--------------------------- | :----------------------------------------- |
-| _ethSigner_ | Ethereum address of the user | 0x5D680Fbb3e60deCAbF62DfcACc56DB7d5964736a |
-| _id_        | Id of the project            | 145                                        |
+### Request
 
-View all query parameters in [ProjectsApiGetProjectRequest](../../../../api-docs/sdk-references/core-sdk-ts/0-6-0/interfaces/ProjectsApiGetProjectRequest.html) interface
-
-#### Example
+Get details about the project with "145" ID:
 
 ```ts
 const getProject = async (ethSigner: Wallet, id: string) => {
@@ -185,39 +149,20 @@ getProject(ethSigner, '145')
   });
 ```
 
-#### Response
+### Example response
 
 ```ts
 {
-  //The project ID
-  id: 145,
-
-  //The project name
-  name: 'Test writer guild',
-
-  //The company name
-  company_name: 'Test Immutable company',
-
-  //The project contact email
-  contact_email: 'immutabletest@example.com',
-
-  //The number of mint operation remaining in the current period
-  mint_remaining: 0,
-
-  //The current period expiry date for mint operation limit
-  mint_limit_expires_at: '2022-10-01T17:41:44.650487Z',
-
-  //The total monthly mint operation limit
-  mint_monthly_limit: 0,
-
-  //The number of collection remaining in the current period
-  collection_remaining: 0,
-
-  //The current period expiry date for collection limit
-  collection_limit_expires_at: '2022-10-01T17:41:44.650487Z',
-
-  //The total monthly collection limit
-  collection_monthly_limit: 0
+    id: 145, // The project ID
+    name: 'Test writer guild', // The project name
+    company_name: 'Test Immutable company', // The company name
+    contact_email: 'immutabletest@example.com', // The project contact email
+    mint_remaining: 0, // The number of mint operation remaining in the current period
+    mint_limit_expires_at: '2022-10-01T17:41:44.650487Z', // The current period expiry date for mint operation limit
+    mint_monthly_limit: 0,  // The total monthly mint operation limit
+    collection_remaining: 0, // The number of collection remaining in the current period
+    collection_limit_expires_at: '2022-10-01T17:41:44.650487Z', // The current period expiry date for collection
+    collection_monthly_limit: 0 // The total monthly collection limit
 }
 ```
 
@@ -255,20 +200,16 @@ getProject(ethSigner, '145')
 
 ### Get list of collections
 
-Get list of collections that include a specified word in their name.
+The list of collections returned can be filtered by passing in parameters to this function.
 
 <Tabs>
   <TabItem value="typescript" label="Typescript Core SDK">
 
-#### Request parameters
+SDK reference: [listCollections](https://docs.x.immutable.com/sdk-references/core-sdk-ts/1.0.0-beta.2/interfaces/index.collectionsapilistcollectionsrequest)
 
-| Parameter | Description                                          | Value |
-| :-------- | :--------------------------------------------------- | :---- |
-| _keyword_ | Keyword to search in collection name and description | NFT   |
+### Request
 
-View all query parameters in [CollectionsApiListCollectionsRequest](https://docs.x.immutable.com/sdk-references/core-sdk-ts/1.0.0-beta.2/interfaces/index.collectionsapilistcollectionsrequest) interface
-
-#### Example
+Get a list of collections with "NFT" in the collection name or description:
 
 ```ts
 const getListCollections = async (keyword: string) => {
@@ -288,7 +229,7 @@ getListCollections('NFT')
   });
 ```
 
-#### Response
+### Example response
 
 ```ts
 {
@@ -296,46 +237,22 @@ getListCollections('NFT')
   //Collections matching query parameters
   result: [
      {
-
-      //Contract address of the collection
-      address: '0x61e506cec264d5b2705f10e5a934dc5313a56a6e',
-
-      //Name of the collection
-      name: 'The ARK NFTs',
-
-      //Description of the collection
-      description: 'Find all the NFTs Created on the ARK Marketplace',
-
-      //URL of the icon for this collection
-      icon_url: 'https://cloudflare-ipfs.com/ipfs/bafkreiadl5kmdwy4tum4tgny4avxedlif33x2awux35c75j4exnz5s7xjm',
-
-      //URL of the tile image for this collection
-      collection_image_url: '',
-
-      //The collection's project ID
-      project_id: 92,
-
-      //Project owner address
-      project_owner_address: '0x59bb6d1b896a9a139380bf2b8d828819f0cf1409',
-
-      //URL of the metadata for this collection
-      metadata_api_url: 'https://api.thearknft.io/v1/nft',
-
-      //Timestamp of when the collection was created
-      created_at: '2022-09-28T12:01:20.479636Z',
-
-      //Timestamp of when the collection was updated
-      updated_at: '2022-09-28T13:35:07.59868Z'
+      address: '0x61e506cec264d5b2705f10e5a934dc5313a56a6e', // Contract address of the collection
+      name: 'The ARK NFTs',  // Name of the collection
+      description: 'Find all the NFTs Created on the ARK Marketplace', // Description of the collection
+      icon_url: 'https://cloudflare-ipfs.com/ipfs/bafkreiadl5kmdwy4tum4tgny4avxedlif33x2awux35c75j4exnz5s7xjm',  // URL of the icon for this collection
+      collection_image_url: '',  // URL of the tile image for this collection
+      project_id: 92,  // The collection's project ID
+      project_owner_address: '0x59bb6d1b896a9a139380bf2b8d828819f0cf1409',  // Project owner address
+      metadata_api_url: 'https://api.thearknft.io/v1/nft', // URL of the metadata for this collection
+      created_at: '2022-09-28T12:01:20.479636Z', // Timestamp of when the collection was created
+      updated_at: '2022-09-28T13:35:07.59868Z' // Timestamp of when the collection was updated
     },
-
-    //rest of the collections
+    // Other collections returned
     ...
   ],
-
-  //Generated cursor returned by previous query
   cursor: "eyJuYW1lIjoiSnVqdSBNaW50cyIsImFkZHJlc3MiOiIweDIzZGIwZTcyYmQ3NzM4ZGEwZDBhZmU3YmNjYjQxMDlmNWYwNWVkY2YiLCJwcm9qZWN0X2lkIjoyNCwiY3JlYXRlZF9hdCI6IjIwMjItMDktMjJUMjM6MTI6NTcuNjY0NDU2WiIsInVwZGF0ZWRfYXQiOiIyMDIyLTA5LTIyVDIzOjEyOjU3LjY2NDQ1NloifQ",
-
-  //Remaining results flag. 1: there are remaining results matching this query, 0: no remaining results
+  // Remaining results
   remaining: 1
 }
 ```
@@ -372,20 +289,14 @@ getListCollections('NFT')
 
 ### Get details about a collection
 
-Get details of a collection at the given address.
-
 <Tabs>
   <TabItem value="typescript" label="Typescript Core SDK">
 
-#### Request parameters
+SDK reference: [getCollection](https://docs.x.immutable.com/sdk-references/core-sdk-ts/1.0.0-beta.2/interfaces/index.collectionsapigetcollectionrequest)
 
-| Parameter | Description                 | Value                                      |
-| :-------- | :-------------------------- | :----------------------------------------- |
-| _address_ | Collection contract address | 0x61e506cec264d5b2705f10e5a934dc5313a56a6e |
+### Request
 
-View all query parameters in [CollectionsApiGetCollectionRequest](https://docs.x.immutable.com/sdk-references/core-sdk-ts/1.0.0-beta.2/interfaces/index.collectionsapigetcollectionrequest) interface
-
-#### Example
+Get details of the collection with the address "0x61e506cec264d5b2705f10e5a934dc5313a56a6e": 
 
 ```ts
 const getCollection = async (address: string) => {
@@ -405,40 +316,20 @@ getCollection('0x61e506cec264d5b2705f10e5a934dc5313a56a6e')
   });
 ```
 
-#### Response
+### Example response
 
 ```ts
 {
-
-    //Contract address of the collection
-    address: '0x61e506cec264d5b2705f10e5a934dc5313a56a6e',
-
-    //Name of the collection
-    name: 'The ARK NFTs',
-
-    //Description of the collection
-    description: 'Find all the NFTs Created on the ARK Marketplace',
-
-    //URL of the icon for this collection
-    icon_url: 'https://cloudflare-ipfs.com/ipfs/bafkreiadl5kmdwy4tum4tgny4avxedlif33x2awux35c75j4exnz5s7xjm',
-
-    //URL of the tile image for this collection
-    collection_image_url: '',
-
-    //The collection's project ID
-    project_id: 92,
-
-    //Project owner address
-    project_owner_address: '0x59bb6d1b896a9a139380bf2b8d828819f0cf1409',
-
-    //URL of the metadata for this collection
-    metadata_api_url: 'https://api.thearknft.io/v1/nft',
-
-    //Timestamp of when the collection was created
-    created_at: '2022-09-28T12:01:20.479636Z',
-
-    //Timestamp of when the collection was updated
-    updated_at: '2022-09-28T13:35:07.59868Z'
+  address: '0x61e506cec264d5b2705f10e5a934dc5313a56a6e', // Contract address of the collection
+  name: 'The ARK NFTs',  // Name of the collection
+  description: 'Find all the NFTs Created on the ARK Marketplace', // Description of the collection
+  icon_url: 'https://cloudflare-ipfs.com/ipfs/bafkreiadl5kmdwy4tum4tgny4avxedlif33x2awux35c75j4exnz5s7xjm',  // URL of the icon for this collection
+  collection_image_url: '',  // URL of the tile image for this collection
+  project_id: 92,  // The collection's project ID
+  project_owner_address: '0x59bb6d1b896a9a139380bf2b8d828819f0cf1409',  // Project owner address
+  metadata_api_url: 'https://api.thearknft.io/v1/nft', // URL of the metadata for this collection
+  created_at: '2022-09-28T12:01:20.479636Z', // Timestamp of when the collection was created
+  updated_at: '2022-09-28T13:35:07.59868Z' // Timestamp of when the collection was updated
 }
 ```
 
@@ -476,21 +367,16 @@ getCollection('0x61e506cec264d5b2705f10e5a934dc5313a56a6e')
 
 ### Get list of assets
 
-Get the list of assets by specified collection order by name.
+The list of assets returned can be filtered by passing in parameters to this function.
 
 <Tabs>
   <TabItem value="typescript" label="Typescript Core SDK">
 
-#### Request parameters
+SDK reference: [listAssets](https://docs.x.immutable.com/sdk-references/core-sdk-ts/1.0.0-beta.2/interfaces/index.assetsapilistassetsrequest)
 
-| Parameter    | Description                        | Value                                      |
-| :----------- | :--------------------------------- | :----------------------------------------- |
-| _collection_ | Contract address of the collection | 0x23db0e72bd7738da0d0afe7bccb4109f5f05edcf |
-| _orderBy_    | Property to sort the response      | name                                       |
+### Request
 
-View all query parameters in [AssetsApiListAssetsRequest](https://docs.x.immutable.com/sdk-references/core-sdk-ts/1.0.0-beta.2/interfaces/index.assetsapilistassetsrequest) interface
-
-#### Example
+Get the list of assets of the collection with address "0x23db0e72bd7738da0d0afe7bccb4109f5f05edcf" order by name:
 
 ```ts
 const getListAssets = async (
@@ -515,52 +401,25 @@ getListAssets('0x23db0e72bd7738da0d0afe7bccb4109f5f05edcf', 'name')
   });
 ```
 
-#### Response
+### Example response
 
 ```ts
 {
-  //Generated cursor returned by previous query
-  cursor: "eyJpZCI6IjB4OTkzNzQyNzhiMThjM2YyNTA5MTFhZjVjMWM2ZGE1OGIxZmMxZjVkZDk1ZjBhYzFkYjA3MTgwOWI2MWM0M2E0ZCIsIm5hbWUiOiIxc3QgTkZUIiwidXBkYXRlZF9hdCI6IjIwMjItMDktMjNUMTQ6MzQ6MDEuNzkzNjM4WiJ9",
-
-  //Remaining results flag. 1: there are remaining results matching this query, 0: no remaining results
-  remaining: 1,
-
-  //Assets matching query parameters
   result: [
     {
-
-      //Address of the ERC721 contract
-      token_address: '0x23db0e72bd7738da0d0afe7bccb4109f5f05edcf',
-
-      //ERC721 Token ID of this asset
-      token_id: '1',
-
-      //Ethereum address of the user who owns this asset
-      user: '0xd5aefc1fed909da9a5409594d758e3bdd055634c'
-
-      //Status of this asset (where it is in the system)
-      status: 'imx',
-
-      //URI to access this asset externally to Immutable X
-      uri: null,
-
-      //Name of this asset
-      name: '1st NFT',
-
-      //Description of this asset
-      description: 'This is your 1st nft',
-
-      //URL of the image which should be used for this asset
-      image_url: 'https://gateway.pinata.cloud/ipfs/QmS7p34oVDHB3VBE2d9bMqrbNFxdmxtwJ8BYcuHa9yNQHz',
-
-      //Metadata of this asset
-      metadata: {
+      token_address: '0x23db0e72bd7738da0d0afe7bccb4109f5f05edcf', // Address of the ERC721 contract
+      token_id: '1', // ERC721 Token ID of this asset
+      user: '0xd5aefc1fed909da9a5409594d758e3bdd055634c', // Ethereum address of the user who owns this asset
+      status: 'imx', // Status of this asset (where it is in the system)
+      uri: null, // URI to access this asset externally to Immutable X
+      name: '1st NFT', // Name of this asset
+      description: 'This is your 1st nft', // Description of this asset
+      image_url: 'https://gateway.pinata.cloud/ipfs/QmS7p34oVDHB3VBE2d9bMqrbNFxdmxtwJ8BYcuHa9yNQHz', // URL of the image which should be used for this asset
+      metadata: { // Metadata of this asset
         name: 'Juju Mints',
         icon_url: 'https://media-exp1.licdn.com/dms/image/C4E03AQFB06seGq_MGA/profile-displayphoto-shrink_100_100/0/1597970079587?e=1669248000&v=beta&t=hd0P3T5102HzRvsSK4TBtjhLJLaivuh0u3Qlu57g7lk'
       },
-
-      //Details of the collection
-      collection: {
+      collection: { // Details of the collection
         name: '1st NFT',
         class: 'EnumValue1',
         attack: 123,
@@ -568,17 +427,15 @@ getListAssets('0x23db0e72bd7738da0d0afe7bccb4109f5f05edcf', 'name')
         collectable: true,
         description: 'This is your 1st nft'
       },
-
-      //Timestamp of when the asset was created
-      created_at: '2022-09-23T14:32:59.876942Z'
-
-      //Timestamp of when the asset was updated
-      updated_at: '2022-09-23T14:34:01.793638Z',
+      created_at: '2022-09-23T14:32:59.876942Z' // Timestamp of when the asset was created
+      updated_at: '2022-09-23T14:34:01.793638Z',  // Timestamp of when the asset was updated
   },
-
-  //rest of the assets
+  // Other assets returned
   ...
-  ]
+  ],
+  cursor: "eyJpZCI6IjB4OTkzNzQyNzhiMThjM2YyNTA5MTFhZjVjMWM2ZGE1OGIxZmMxZjVkZDk1ZjBhYzFkYjA3MTgwOWI2MWM0M2E0ZCIsIm5hbWUiOiIxc3QgTkZUIiwidXBkYXRlZF9hdCI6IjIwMjItMDktMjNUMTQ6MzQ6MDEuNzkzNjM4WiJ9",
+  // Remaining results
+  remaining: 1,
 }
 ```
 
@@ -614,22 +471,14 @@ getListAssets('0x23db0e72bd7738da0d0afe7bccb4109f5f05edcf', 'name')
 
 ### Get details about an asset
 
-Get details about an asset that you got in the previusly [example](#get-list-of-assets).
-
 <Tabs>
   <TabItem value="typescript" label="Typescript Core SDK">
 
-#### Request parameters
+SDK reference: [getAsset](https://docs.x.immutable.com/sdk-references/core-sdk-ts/1.0.0-beta.2/interfaces/index.assetsapigetassetrequest)
 
-| Parameter      | Description                            | Value                                      |
-| :------------- | :------------------------------------- | :----------------------------------------- |
-| _tokenAddress_ | Contract address of the collection     | 0x23db0e72bd7738da0d0afe7bccb4109f5f05edcf |
-| _tokenId_      | Token ID of the asset                  | 1                                          |
-| _includeFees_  | Include fees associated with the asset | true                                       |
+### Request
 
-View all query parameters in [AssetsApiGetAssetRequest](https://docs.x.immutable.com/sdk-references/core-sdk-ts/1.0.0-beta.2/interfaces/index.assetsapigetassetrequest) interface
-
-#### Example
+Get details of the asset of the collection with address "0x23db0e72bd7738da0d0afe7bccb4109f5f05edcf" and ID "1":
 
 ```ts
 const getAsset = async (
@@ -655,37 +504,23 @@ getAsset('0x23db0e72bd7738da0d0afe7bccb4109f5f05edcf', '1', true)
   });
 ```
 
-#### Response
+### Example response
 
 ```ts
 {
-
-      //Address of the ERC721 contract
-      token_address: '0x23db0e72bd7738da0d0afe7bccb4109f5f05edcf',
-
-      //ERC721 Token ID of this asset
-      token_id: '1',
-
-      //Ethereum address of the user who owns this asset
-      user: '0xd5aefc1fed909da9a5409594d758e3bdd055634c'
-
-      //Status of this asset (where it is in the system)
-      status: 'imx',
-
-      //URI to access this asset externally to Immutable X
-      uri: null,
-
-      //Name of this asset
-      name: '1st NFT',
-
-      //Description of this asset
-      description: 'This is your 1st nft',
-
-      //URL of the image which should be used for this asset
-      image_url: 'https://gateway.pinata.cloud/ipfs/QmS7p34oVDHB3VBE2d9bMqrbNFxdmxtwJ8BYcuHa9yNQHz',
-
-      //Metadata of this asset
-      metadata: {
+      token_address: '0x23db0e72bd7738da0d0afe7bccb4109f5f05edcf', // Address of the ERC721 contract
+      token_id: '1', // ERC721 Token ID of this asset
+      user: '0xd5aefc1fed909da9a5409594d758e3bdd055634c', // Ethereum address of the user who owns this asset
+      status: 'imx', // Status of this asset (where it is in the system)
+      uri: null, // URI to access this asset externally to Immutable X
+      name: '1st NFT', // Name of this asset
+      description: 'This is your 1st nft', // Description of this asset
+      image_url: 'https://gateway.pinata.cloud/ipfs/QmS7p34oVDHB3VBE2d9bMqrbNFxdmxtwJ8BYcuHa9yNQHz', // URL of the image which should be used for this asset
+      metadata: { // Metadata of this asset
+        name: 'Juju Mints',
+        icon_url: 'https://media-exp1.licdn.com/dms/image/C4E03AQFB06seGq_MGA/profile-displayphoto-shrink_100_100/0/1597970079587?e=1669248000&v=beta&t=hd0P3T5102HzRvsSK4TBtjhLJLaivuh0u3Qlu57g7lk'
+      },
+      collection: { // Details of the collection
         name: '1st NFT',
         class: 'EnumValue1',
         attack: 123,
@@ -693,21 +528,9 @@ getAsset('0x23db0e72bd7738da0d0afe7bccb4109f5f05edcf', '1', true)
         collectable: true,
         description: 'This is your 1st nft'
       },
-
-      //Details of the collection
-      collection: {
-        name: 'Juju Mints',
-        icon_url: 'https://media-exp1.licdn.com/dms/image/C4E03AQFB06seGq_MGA/profile-displayphoto-shrink_100_100/0/1597970079587?e=1669248000&v=beta&t=hd0P3T5102HzRvsSK4TBtjhLJLaivuh0u3Qlu57g7lk'
-      },
-
-      //Timestamp of when the asset was created
-      created_at: '2022-09-23T14:32:59.876942Z'
-
-      //Timestamp of when the asset was updated
-      updated_at: '2022-09-23T14:34:01.793638Z',
-
-      //Royalties to pay on this asset operations
-      fees: [
+      created_at: '2022-09-23T14:32:59.876942Z' // Timestamp of when the asset was created
+      updated_at: '2022-09-23T14:34:01.793638Z',  // Timestamp of when the asset was updated
+      fees: [  // Royalties to pay on this asset operations
         {
           type: 'protocol',
           address: '0xc8714f989ce817e5d21349888077aa5db4a9bcf6',
@@ -751,23 +574,17 @@ getAsset('0x23db0e72bd7738da0d0afe7bccb4109f5f05edcf', '1', true)
 
 ### Get list of orders
 
-Get the list of all orders that contain asset of a given collection listed in ETH.
+The list of orders returned can be filtered by passing in parameters to this function.
 
 <Tabs>
   <TabItem value="typescript" label="Typescript Core SDK">
 
-#### Request parameters
 
-| Parameter         | Description                                      | Value                                      |
-| :---------------- | :----------------------------------------------- | :----------------------------------------- |
-| _status_          | Status of the order                              | active                                     |
-| _orderBy_         | Property to sort the response                    | name                                       |
-| _sellTokenAddres_ | Collection address of the asset this order sells | 0x61e506cec264d5b2705f10e5a934dc5313a56a6e |
-| _buyTokenType_    | Token type of the asset this order buys          | ETH                                        |
+SDK reference: [listOrders](https://docs.x.immutable.com/sdk-references/core-sdk-ts/1.0.0-beta.2/interfaces/index.ordersapilistordersrequest)
 
-View all query parameters in [OrdersApiListOrdersRequest](https://docs.x.immutable.com/sdk-references/core-sdk-ts/1.0.0-beta.2/interfaces/index.ordersapilistordersrequest) interface
+### Request
 
-#### Example
+Get the list of all active orders that contain asset of the collection with address "0x61e506cec264d5b2705f10e5a934dc5313a56a6e", listed in "ETH" and sorted by "name":
 
 ```ts
 const getListOrders = async (
@@ -806,91 +623,48 @@ getListOrders(
   });
 ```
 
-#### Response
+### Example response
 
 ```ts
 {
   result: [
     {
-      //ID of the order
-      order_id: 1506,
-
-      //Status of the order
-      status: 'active',
-
-      //Ethereum address of the user who submitted the order
-      user: '0x192f36ee2bd12cf90571e464a3d28e76b8462c87',
-
-      //Details about the asset in sale
-      sell: {
-        //Type of this asset (ETH/ERC20/ERC721), it used to buy the asset
-        type: 'ERC721',
-
+      order_id: 1506, // ID of the order
+      status: 'active', // Status of the order
+      user: '0x192f36ee2bd12cf90571e464a3d28e76b8462c87', // Ethereum address of the user who submitted the order
+      sell: { // Details about the asset in sale
+        type: 'ERC721', // Type of this asset (ETH/ERC20/ERC721), it used to buy the asset
         data: {
-
-          //ERC721 Token ID
-          token_id: '271',
-
-          //Address of ERC721/ERC20 contract
-          token_address: '0x61e506cec264d5b2705f10e5a934dc5313a56a6e',
-
-          //Quantity of this asset - inclusive of fees for buy order in v1 API and exclusive of fees in v3 API
-          quantity: '1',
-
-          //Quantity of this asset with the sum of all fees applied to the asset
-          quantity_with_fees: '',
-
-          //Properties of the asset in sale
-          properties: {
+          token_id: '271', // ERC721 Token ID
+          token_address: '0x61e506cec264d5b2705f10e5a934dc5313a56a6e', // Address of ERC721/ERC20 contract
+          quantity: '1',  // Quantity of this asset - inclusive of fees for buy order in v1 API and exclusive of fees in v3 API
+          quantity_with_fees: '',  // Quantity of this asset with the sum of all fees applied to the asset
+          properties: { // Properties of the asset in sale
             name: 'CityEscape #1',
             image_url: 'https://ipfs.thearknft.io/ipfs/bafkreibq3wnukid4fdfdugjjefjsom553mjloealius5cidqvtktvxf4va',
             collection: [Object]
           }
         }
       },
-
-      //Details about the asset used to buy
-      buy: {
-
-        //Type of this asset (ETH/ERC20/ERC721), it used to buy the asset
-        type: 'ETH',
-
+      buy: {  // Details about the asset used to buy
+        type: 'ETH',  // Type of this asset (ETH/ERC20/ERC721), it used to buy the asset
         data: {
-
-          //Address of ERC721/ERC20 contract. If the type is ETH, no address is required
-          token_address: '',
-
-          //Number of decimals supported by this asset
-          decimals: 18,
-
-          //Quantity of this asset - inclusive of fees for buy order in v1 API and exclusive of fees in v3 API
-          quantity: '530000000000000000',
-
-          //Quantity of this asset with the sum of all fees applied to the asset
-          quantity_with_fees: '530000000000000000'
+          token_address: '', // Address of ERC721/ERC20 contract. If the type is ETH, no address is required
+          decimals: 18, // Number of decimals supported by this asset
+          quantity: '530000000000000000', // Quantity of this asset - inclusive of fees for buy order in v1 API and exclusive of fees in v3 API
+          quantity_with_fees: '530000000000000000' // Quantity of this asset with the sum of all fees applied to the asset
         }
       },
-
-      //Amount of the asset already sold by this order
-      amount_sold: null,
-
-      //Expiration timestamp of this order
-      expiration_timestamp: '2121-09-28T13:00:00Z',
-
-      //Timestamp this order was created
-      timestamp: '2022-09-28T13:26:26.327782Z',
-
-      //Updated timestamp of this order
-      updated_timestamp: '2022-09-28T13:26:26.327782Z'
+      amount_sold: null, // Amount of the asset already sold by this order
+      expiration_timestamp: '2121-09-28T13:00:00Z', // Expiration timestamp of this order
+      timestamp: '2022-09-28T13:26:26.327782Z', // Timestamp this order was created
+      updated_timestamp: '2022-09-28T13:26:26.327782Z' // Updated timestamp of this order
     },
-
-    //other orders
+    // Other orders returned
     ...
   ],
-  //Generated cursor returned by previous query
  cursor: 'eyJvcmRlcl9pZCI6MTU0Niwic2VsbF9xdWFudGl0eSI6IjEiLCJidXlfcXVhbnRpdHkiOiI4MDAwMDAwMDAwMDAwMDAwMCIsImJ1eV9xdWFudGl0eV9pbmNsdXNpdmVfZmVlcyI6IjgzMjAwMDAwMDAwMDAwMDAwIiwiZXhwaXJlZF9hdCI6IjIxMjEtMDktMjlUMDA6MDA6MDBaIiwiY3JlYXRlZF9hdCI6IjIwMjItMDktMjlUMDA6NDc6MTMuODA2NjU2WiIsInVwZGF0ZWRfYXQiOiIyMDIyLTA5LTI5VDAwOjQ3OjEzLjgwNjY1NloiLCJ0c19zb3J0X3JhbmsiOm51bGx9',
-
-  //Remaining results flag. 1: there are remaining results matching this query, 0: no remaining results
+  // Remaining results
   remaining: 0
 }
 ```
@@ -927,21 +701,14 @@ getListOrders(
 
 ### Get details about an order
 
-Get details about an order included fees.
-
 <Tabs>
   <TabItem value="typescript" label="Typescript Core SDK">
 
-#### Request parameters
+SDK reference: [getOrder](https://docs.x.immutable.com/sdk-references/core-sdk-ts/1.0.0-beta.2/interfaces/index.ordersapigetorderrequest)
 
-| Parameter     | Description                            | Value |
-| :------------ | :------------------------------------- | :---- |
-| _id_          | Order ID                               | 1506  |
-| _includeFees_ | Include fees associated with the asset | true  |
+### Request
 
-View all query parameters in [OrdersApiGetOrderRequest](https://docs.x.immutable.com/sdk-references/core-sdk-ts/1.0.0-beta.2/interfaces/index.ordersapigetorderrequest) interface
-
-#### Example
+Get details about the order with ID "1506" and include fees:
 
 ```ts
 const getOrder = async (id: string, includeFees: boolean) => {
@@ -962,83 +729,41 @@ getOrder('1506', true)
   });
 ```
 
-#### Response
+### Example response
 
 ```ts
 {
-      //ID of the order
-      order_id: 1506,
-
-      //Status of the order
-      status: 'active',
-
-      //Ethereum address of the user who submitted the order
-      user: '0x192f36ee2bd12cf90571e464a3d28e76b8462c87',
-
-      //Details about the asset in sale
-      sell: {
-        //Type of this asset (ETH/ERC20/ERC721), it used to buy the asset
-        type: 'ERC721',
-
+      order_id: 1506, // ID of the order
+      status: 'active', // Status of the order
+      user: '0x192f36ee2bd12cf90571e464a3d28e76b8462c87', // Ethereum address of the user who submitted the order
+      sell: { // Details about the asset in sale
+        type: 'ERC721', // Type of this asset (ETH/ERC20/ERC721), it used to buy the asset
         data: {
-
-          //ERC721 Token ID
-          token_id: '271',
-
-          //Address of ERC721/ERC20 contract
-          token_address: '0x61e506cec264d5b2705f10e5a934dc5313a56a6e',
-
-          //Quantity of this asset - inclusive of fees for buy order in v1 API and exclusive of fees in v3 API
-          quantity: '1',
-
-          //Quantity of this asset with the sum of all fees applied to the asset
-          quantity_with_fees: '',
-
-          //Properties of the asset in sale
-          properties: {
+          token_id: '271', // ERC721 Token ID
+          token_address: '0x61e506cec264d5b2705f10e5a934dc5313a56a6e', // Address of ERC721/ERC20 contract
+          quantity: '1',  // Quantity of this asset - inclusive of fees for buy order in v1 API and exclusive of fees in v3 API
+          quantity_with_fees: '',  // Quantity of this asset with the sum of all fees applied to the asset
+          properties: { // Properties of the asset in sale
             name: 'CityEscape #1',
             image_url: 'https://ipfs.thearknft.io/ipfs/bafkreibq3wnukid4fdfdugjjefjsom553mjloealius5cidqvtktvxf4va',
             collection: [Object]
           }
         }
       },
-
-      //Details about the asset used to buy
-      buy: {
-
-        //Type of this asset (ETH/ERC20/ERC721), it used to buy the asset
-        type: 'ETH',
-
+      buy: {  // Details about the asset used to buy
+        type: 'ETH',  // Type of this asset (ETH/ERC20/ERC721), it used to buy the asset
         data: {
-
-          //Address of ERC721/ERC20 contract. If the type is ETH, no address is required
-          token_address: '',
-
-          //Number of decimals supported by this asset
-          decimals: 18,
-
-          //Quantity of this asset - inclusive of fees for buy order in v1 API and exclusive of fees in v3 API
-          quantity: '530000000000000000',
-
-          //Quantity of this asset with the sum of all fees applied to the asset
-          quantity_with_fees: '530000000000000000'
+          token_address: '', // Address of ERC721/ERC20 contract. If the type is ETH, no address is required
+          decimals: 18, // Number of decimals supported by this asset
+          quantity: '530000000000000000', // Quantity of this asset - inclusive of fees for buy order in v1 API and exclusive of fees in v3 API
+          quantity_with_fees: '530000000000000000' // Quantity of this asset with the sum of all fees applied to the asset
         }
       },
-
-      //Amount of the asset already sold by this order
-      amount_sold: null,
-
-      //Expiration timestamp of this order
-      expiration_timestamp: '2121-09-28T13:00:00Z',
-
-      //Timestamp this order was created
-      timestamp: '2022-09-28T13:26:26.327782Z',
-
-      //Updated timestamp of this order
-      updated_timestamp: '2022-09-28T13:26:26.327782Z',
-
-      //Fees info
-      fees: [
+      amount_sold: null, // Amount of the asset already sold by this order
+      expiration_timestamp: '2121-09-28T13:00:00Z', // Expiration timestamp of this order
+      timestamp: '2022-09-28T13:26:26.327782Z', // Timestamp this order was created
+      updated_timestamp: '2022-09-28T13:26:26.327782Z' // Updated timestamp of this order
+      fees: [  // Fees info
         {
           type: 'protocol',
           address: '0xa6c368164eb270c31592c1830ed25c2bf5d34bae',
@@ -1096,21 +821,16 @@ getOrder('1506', true)
 
 ### Get list of transfers
 
-Get list of the last 5 transfer made on Immutable X.
+The list of transfers returned can be filtered by passing in parameters to this function.
 
 <Tabs>
   <TabItem value="typescript" label="Typescript Core SDK">
 
-#### Request parameters
+SDK reference: [listTransfersRequest](https://docs.x.immutable.com/sdk-references/core-sdk-ts/1.0.0-beta.2/interfaces/index.transfersapilisttransfersrequest)
 
-| Parameter  | Description                   | Value      |
-| :--------- | :---------------------------- | :--------- |
-| _orderBy_  | Property to sort the response | updated_at |
-| _pageSize_ | Page size of the result       | 5          |
+### Request
 
-View all query parameters in [TransfersApiListTransfersRequest](https://docs.x.immutable.com/sdk-references/core-sdk-ts/1.0.0-beta.2/interfaces/index.transfersapilisttransfersrequest) interface
-
-#### Example
+Get the list of the last 5 transfers made on Immutable X:
 
 ```ts
 const getListTransfers = async (
@@ -1139,61 +859,34 @@ getListTransfers('updated_at', 5)
   });
 ```
 
-#### Response
+### Example response
 
 ```ts
 {
   result: [
     {
-      //Sequential transaction ID
-      transaction_id: 56779,
-
-      //Status of the transaction
-      status: 'success',
-
-      //Ethereum address of the user  who submitted this transfer
-      user: '0xd1a147a26a6f2b414694d2a7161515bdbd97ddbe',
-
-      //Ethereum address of the user who received this transfer
-      receiver: '0x0000000000000000000000000000000000000000',
-
-      //Token info
-      token: {
-
-        //Type of this asset (ETH/ERC20/ERC721), it used to buy the asset
-        type: 'ERC721',
-
+      transaction_id: 56779, // Sequential transaction ID
+      status: 'success', // Status of the transaction
+      user: '0xd1a147a26a6f2b414694d2a7161515bdbd97ddbe',       // Ethereum address of the user  who submitted this transfer
+      receiver: '0x0000000000000000000000000000000000000000', // Ethereum address of the user who received this transfer
+      token: { // Token info
+        type: 'ERC721',  // Type of this asset (ETH/ERC20/ERC721), it used to buy the asset
         data: {
-
-          //Token ID
-          token_id: '482',
-
-          //Address of ERC721/ERC20 contract. If the type is ETH, no address is required
-          token_address: '0x2d5ac360eaf14d11b442383e06159a3c8afea8ea',
-
-          //Number of decimals supported by this asset
-          decimals: 0,
-
-          //Quantity of this asset - inclusive of fees for buy order in v1 API and exclusive of fees in v3 API
-          quantity: '1',
-
-          //Quantity of this asset with the sum of all fees applied to the asset
-          quantity_with_fees: ''
+          token_id: '482', // Token ID
+          token_address: '0x2d5ac360eaf14d11b442383e06159a3c8afea8ea', // Address of ERC721/ERC20 contract. If the type is ETH, no address is required
+          decimals: 0, // Number of decimals supported by this asset
+          quantity: '1', // Quantity of this asset - inclusive of fees for buy order in v1 API and exclusive of fees in v3 API
+          quantity_with_fees: '' // Quantity of this asset with the sum of all fees applied to the asset
         }
       },
-
-      //Timestamp of the transfer
+      // Timestamp of the transfer
       timestamp: '2022-09-30T12:36:47.115017Z'
     },
-
-    //other transfers
+    // Other transfers returned
     ...
   ],
-
-  //Generated cursor returned by previous query
   cursor: 'eyJ0cmFuc2FjdGlvbl9pZCI6NTY3NzUsInN0YXR1cyI6InN1Y2Nlc3MiLCJzZW5kZXJfZXRoZXJfa2V5IjoiMHg1YjQxNjIxOTFkNjA0ZWZlYmViYjQzMDQ5MWQ2NjE1NGRmMWQ1ODU5IiwicmVjZWl2ZXJfZXRoZXJfa2V5IjoiMHhlNGY2M2UxNTUyMTk2OWVkMWY4ODAyMWM0YWZmZTIyNTAzYWQyOTE5IiwiVHlwZSI6IkVSQzcyMSIsIklEIjoiMHhjYjE3ZDMzODBiNjk5ZTFmYTZmZjYxNmU4ZTU0MDhmZTU5ZWFkMWRkMzY0MTBmYjc0YmNjMWRiMzkzMDJiYThiIiwiRVJDNzIxVG9rZW5JRCI6IjI4NzI4IiwiQ29udHJhY3RBZGRyZXNzIjoiMHhhOGVlZGViMmEyMzEwNTQzMGJlOGIxNGFhMWMzN2VkMDI3ZDY3MmRhIiwiRGVjaW1hbHMiOjAsIlF1YW50aXR5IjoiMSIsIkJhdGNoSUQiOm51bGwsImNyZWF0ZWRfYXQiOiIyMDIyLTA5LTMwVDExOjU0OjExLjU4OTMyNloifQ',
-
-  //Remaining results flag. 1: there are remaining results matching this query, 0: no remaining results
+  // Remaining results
   remaining: 1
 }
 ```
@@ -1230,20 +923,15 @@ getListTransfers('updated_at', 5)
 
 ### Get details about a transfer
 
-Get details about a transfer by ID.
-
 <Tabs>
   <TabItem value="typescript" label="Typescript Core SDK">
 
-#### Request parameters
 
-| Parameter | Description | Value |
-| :-------- | :---------- | :---- |
-| _id_      | Order ID    | 56775 |
+SDK reference: [getTransfer](https://docs.x.immutable.com/sdk-references/core-sdk-ts/1.0.0-beta.2/interfaces/index.transfersapigettransferrequest)
 
-View all query parameters in [TransferRequest](https://docs.x.immutable.com/sdk-references/core-sdk-ts/1.0.0-beta.2/interfaces/index.transfersapigettransferrequest) interface
+### Request
 
-#### Example
+Get details about the transfer with ID "56779":
 
 ```ts
 const getTransfer = async (id: string) => {
@@ -1263,50 +951,27 @@ getTransfer('56775')
   });
 ```
 
-#### Response
+### Example response
 
 ```ts
 {
-      //Sequential transaction ID
-      transaction_id: 56775,
-
-      //Status of the transaction
-      status: 'success',
-
-      //Ethereum address of the user  who submitted this transfer
-      user: '0x5b4162191d604efebebb430491d66154df1d5859',
-
-      //Ethereum address of the user who received this transfer
-      receiver: '0xe4f63e15521969ed1f88021c4affe22503ad2919',
-
-      //Token info
-      token: {
-
-        //Type of this asset (ETH/ERC20/ERC721), it used to buy the asset
-        type: 'ERC721',
-
-        data: {
-
-          //Token ID
-          token_id: '28728',
-
-          //Address of ERC721/ERC20 contract. If the type is ETH, no address is required
-          token_address: '0xa8eedeb2a23105430be8b14aa1c37ed027d672da',
-
-          //Number of decimals supported by this asset
-          decimals: 0,
-
-          //Quantity of this asset - inclusive of fees for buy order in v1 API and exclusive of fees in v3 API
-          quantity: '1',
-
-          //Quantity of this asset with the sum of all fees applied to the asset
-          quantity_with_fees: ''
-        }
-      },
-
-      //Timestamp of the transfer
-      timestamp: '2022-09-30T12:36:47.115017Z'
-    }
+    transaction_id: 56779, // Sequential transaction ID
+    status: 'success', // Status of the transaction
+    user: '0xd1a147a26a6f2b414694d2a7161515bdbd97ddbe',       // Ethereum address of the user  who submitted this transfer
+    receiver: '0x0000000000000000000000000000000000000000', // Ethereum address of the user who received this transfer
+    token: { // Token info
+      type: 'ERC721',  // Type of this asset (ETH/ERC20/ERC721), it used to buy the asset
+      data: {
+        token_id: '482', // Token ID
+        token_address: '0x2d5ac360eaf14d11b442383e06159a3c8afea8ea', // Address of ERC721/ERC20 contract. If the type is ETH, no address is required
+        decimals: 0, // Number of decimals supported by this asset
+        quantity: '1', // Quantity of this asset - inclusive of fees for buy order in v1 API and exclusive of fees in v3 API
+        quantity_with_fees: '' // Quantity of this asset with the sum of all fees applied to the asset
+      }
+    },
+    // Timestamp of the transfer
+    timestamp: '2022-09-30T12:36:47.115017Z'
+}
 
 ```
 
@@ -1344,20 +1009,17 @@ getTransfer('56775')
 
 ### Get list of tokens
 
-Get list of tokens avaiable on Immutable X.
+The list of tokens returned can be filtered by passing in parameters to this function.
 
 <Tabs>
   <TabItem value="typescript" label="Typescript Core SDK">
 
-#### Request parameters
 
-| Parameter | Description                   | Value            |
-| :-------- | :---------------------------- | :--------------- |
-| _orderBy_ | Property to sort the response | contract_address |
+SDK reference: [listTokens](https://docs.x.immutable.com/sdk-references/core-sdk-ts/1.0.0-beta.2/interfaces/index.tokensapilisttokensrequest)
 
-View all query parameters in [TokensApiListTokensRequest](https://docs.x.immutable.com/sdk-references/core-sdk-ts/1.0.0-beta.2/interfaces/index.tokensapilisttokensrequest) interface
+Get the list of tokens ordered by "contract_address":
 
-#### Example
+### Request
 
 ```ts
 const getListTokens = async (
@@ -1379,36 +1041,22 @@ getListTokens('contract_address')
   });
 ```
 
-#### Response
+### Example response
 
 ```ts
 {
   result: [
     {
-      //Full name of the token (e.g. Ether)
-      name: 'Gods Unchained',
-
-      //Url for the icon of the token
-      image_url: 'https://design-system.immutable.com/hosted-for-ds/currency-icons/currency--gods.svg',
-
-      //Address of the ERC721 contract
-      token_address: '0x5c9f1680bb6a4b4fc698e0cf702e0cc34aed91b7',
-
-      //Ticker symbol for token (e.g. ETH/USDC/IMX)
-      symbol: 'GODS',
-
-      //Number of decimals for token
-      decimals: '18',
-
-      //Quantum for token
-      quantum: '100000000'
+      name: 'Gods Unchained', // Full name of the token (e.g. Ether)
+      image_url: 'https://design-system.immutable.com/hosted-for-ds/currency-icons/currency--gods.svg', // Url for the icon of the token
+      token_address: '0x5c9f1680bb6a4b4fc698e0cf702e0cc34aed91b7', // Address of the ERC721 contract
+      symbol: 'GODS', // Ticker symbol for token (e.g. ETH/USDC/IMX)
+      decimals: '18', // Number of decimals for token
+      quantum: '100000000'  // Quantum for token
     },
-
-    //other tokens
+    // Other tokens returned
     ...
   ],
-
-  //Generated cursor returned by previous query
   cursor: 'eyJuYW1lIjoiRXRoZXJldW0iLCJzeW1ib2wiOiJFVEgifQ'
 }
 ```
@@ -1445,20 +1093,15 @@ getListTokens('contract_address')
 
 ### Get details about a token
 
-Get details about a token by given address.
-
 <Tabs>
   <TabItem value="typescript" label="Typescript Core SDK">
 
-#### Request parameters
 
-| Parameter | Description                   | Value                                      |
-| :-------- | :---------------------------- | :----------------------------------------- |
-| _address_ | Ethereum address of the token | 0x1facdd0165489f373255a90304650e15481b2c85 |
+SDK reference: [getToken](https://docs.x.immutable.com/sdk-references/core-sdk-ts/1.0.0-beta.2/interfaces/index.tokensapigettokenrequest)
 
-View all query parameters in [TokensApiGetTokenRequest](https://docs.x.immutable.com/sdk-references/core-sdk-ts/1.0.0-beta.2/interfaces/index.tokensapigettokenrequest) interface
+### Request
 
-#### Example
+Get details about the token with address "0x1facdd0165489f373255a90304650e15481b2c85":
 
 ```ts
 const getToken = async (address: string) => {
@@ -1478,28 +1121,16 @@ getToken('0x1facdd0165489f373255a90304650e15481b2c85')
   });
 ```
 
-#### Response
+### Example response
 
 ```ts
 {
-
-    //Full name of the token (e.g. Ether)
-    name: 'Immutable X Token',
-
-    //Url for the icon of the token
-    image_url: 'https://design-system.immutable.com/hosted-for-ds/currency-icons/currency--imx.svg',
-
-    //Address of the ERC721 contract
-    token_address: '0x1facdd0165489f373255a90304650e15481b2c85',
-
-    //Ticker symbol for token (e.g. ETH/USDC/IMX)
-    symbol: 'IMX',
-
-    //Number of decimals for token
-    decimals: '18',
-
-    //Quantum for token
-    quantum: '100000000'
+    name: 'Immutable X Token',  // Full name of the token (e.g. Ether)
+    image_url: 'https://design-system.immutable.com/hosted-for-ds/currency-icons/currency--imx.svg', // Url for the icon of the token
+    token_address: '0x1facdd0165489f373255a90304650e15481b2c85', // Address of the ERC721 contract
+    symbol: 'IMX', // Ticker symbol for token (e.g. ETH/USDC/IMX)
+    decimals: '18', // Number of decimals for token
+    quantum: '100000000' // Quantum for token
 }
 ```
 
@@ -1537,21 +1168,16 @@ getToken('0x1facdd0165489f373255a90304650e15481b2c85')
 
 ### Get list of trades
 
-Get the last 5 trades with ETH made on Immutable X.
+The list of tokens returned can be filtered by passing in parameters to this function.
 
 <Tabs>
   <TabItem value="typescript" label="Typescript Core SDK">
 
-#### Request parameters
+SDK reference: [listTrades](https://docs.x.immutable.com/sdk-references/core-sdk-ts/1.0.0-beta.2/interfaces/index.tradesapilisttradesrequest)
 
-| Parameter         | Description                        | Value |
-| :---------------- | :--------------------------------- | :---- |
-| _partyATokenType_ | Token type of currency used to buy | ETH   |
-| _pageSize_        | Page size of the result            | 5     |
+### Request
 
-View all query parameters in [TradesApiListTradesRequest](https://docs.x.immutable.com/sdk-references/core-sdk-ts/1.0.0-beta.2/interfaces/index.tradesapilisttradesrequest) interface
-
-#### Example
+Get the last 5 trades with ETH made on Immutable X:
 
 ```ts
 const getListTrades = async (partyATokenType: string, pageSize: number) => {
@@ -1572,62 +1198,33 @@ getListTrades('ETH', 5)
   });
 ```
 
-#### Response
+### Example response
 
 ```ts
 {
   result: [
     {
-      //Sequential ID of this trade within Immutable X
-      transaction_id: 56408,
-
-      //Status of this trade
-      status: 'success',
-
-      //Buy object
-      a: {
-
-        //The ID of the order involved in the trade
-        order_id: 1581,
-
-        //The type of the token that this trade sold
-        token_type: 'ETH',
-
-        //The amount of that order\'s asset this trade sold in wei
-        sold: '10000000000000000'
+      transaction_id: 56408, // Sequential ID of this trade within Immutable X
+      status: 'success', // Status of this trade
+      a: {  // Buy object
+        order_id: 1581, // The ID of the order involved in the trade
+        token_type: 'ETH', // The type of the token that this trade sold
+        sold: '10000000000000000' // The amount of that order\'s asset this trade sold in wei
       },
-
-      //Sell object
-      b: {
-
-        //The ID of the order involved in the trade
-        order_id: 1579,
-
-        //The type of the token that this trade sold
-        token_type: 'ERC721',
-
-        //The ID of the token that this trade sold
-        token_id: '1507',
-
-        //The contract address of the token that this trade sold
-        token_address: '0x72ec08386b4bbf0c344238b1bb892b2b279f1dcf',
-
-        //The amount of that order\'s asset this trade sold
-        sold: '1'
+      b: { // Sell object
+        order_id: 1579, // The ID of the order involved in the trade
+        token_type: 'ERC721', // The type of the token that this trade sold
+        token_id: '1507', // The ID of the token that this trade sold
+        token_address: '0x72ec08386b4bbf0c344238b1bb892b2b279f1dcf', // The contract address of the token that this trade sold
+        sold: '1'  // The amount of that order\'s asset this trade sold
       },
-
-      //Time this trade occurred
-      timestamp: '2022-09-29T10:33:26.39022Z'
+      timestamp: '2022-09-29T10:33:26.39022Z' // Time this trade occurred
     },
-
-    //other trades
+    // Other trades returned
     ...
   ],
-
-  //Generated cursor returned by previous query
   cursor: 'eyJ0cmFuc2FjdGlvbl9pZCI6NTY0MDgsInN0YXR1cyI6InN1Y2Nlc3MiLCJwYXJ0eV9hX29yZGVyX2lkIjoxNTYzLCJwYXJ0eV9hX2V0aGVyX2tleSI6IjB4MGEyMDU3NDRkYTMzZWY4Y2Y2NjY0OWM1OGFhYmFmZGZiY2E3NGFkMSIsInBhcnR5X2Ffc29sZF90b2tlbl90eXBlIjoiRVRIIiwicGFydHlfYV9zb2xkX3Rva2VuX2lkIjoiIiwicGFydHlfYV9zb2xkX3Rva2VuX2FkZHJlc3MiOiIiLCJwYXJ0eV9hX3NvbGRfcXVhbnRpdHkiOiIxMDAwMDAwMDAwMDAwMCIsInBhcnR5X2Jfb3JkZXJfaWQiOjExNzMsInBhcnR5X2JfZXRoZXJfa2V5IjoiMHg2YzQ0MzUxMGNmNmE0YTU2MzQxZDRjZTFhZWEzYjQzOTlhMTRmYmM3IiwicGFydHlfYl9zb2xkX3Rva2VuX3R5cGUiOiJFUkM3MjEiLCJwYXJ0eV9iX3NvbGRfdG9rZW5faWQiOiIxMCIsInBhcnR5X2Jfc29sZF90b2tlbl9hZGRyZXNzIjoiMHhiYzkxYTYxYzU2MWQ1ZDVlYzMxNmE0N2NlMjU1OGJiNjk0ZDUxNmQ1IiwicGFydHlfYl9zb2xkX3F1YW50aXR5IjoiMSIsImNyZWF0ZWRfYXQiOiIyMDIyLTA5LTI5VDEwOjMzOjI2LjM5MDIyWiJ9',
-
-  //Remaining results flag. 1: there are remaining results matching this query, 0: no remaining results
+  // Remaining results
   remaining: 1
 }
 ```
@@ -1664,20 +1261,15 @@ getListTrades('ETH', 5)
 
 ### Get details about a trade
 
-Get details about a trade by ID.
-
 <Tabs>
   <TabItem value="typescript" label="Typescript Core SDK">
 
-#### Request parameters
 
-| Parameter | Description | Value |
-| :-------- | :---------- | :---- |
-| _id_      | Trade ID    | 56715 |
+SDK reference: [getTrade](https://docs.x.immutable.com/sdk-references/core-sdk-ts/1.0.0-beta.2/interfaces/index.tradesapigettraderequest)
 
-View all query parameters in [TradesApiGetTradeRequest](https://docs.x.immutable.com/sdk-references/core-sdk-ts/1.0.0-beta.2/interfaces/index.tradesapigettraderequest) interface
+### Request
 
-#### Example
+Get details about the trade with ID "56408":
 
 ```ts
 const getTrade = async (id: string) => {
@@ -1697,50 +1289,25 @@ getTrade('56715')
   });
 ```
 
-#### Response
+### Example response
 
 ```ts
 {
-      //Sequential ID of this trade within Immutable X
-      transaction_id: 56715,
-
-      //Status of this trade
-      status: 'success',
-
-      //Buy object
-      a: {
-
-        //The ID of the order involved in the trade
-        order_id: 1580,
-
-        //The type of the token that this trade sold
-        token_type: 'ETH',
-
-        //The amount of that order\'s asset this trade sold in wei
-        sold: '1000000000000000'
+      transaction_id: 56408, // Sequential ID of this trade within Immutable X
+      status: 'success', // Status of this trade
+      a: {  // Buy object
+        order_id: 1581, // The ID of the order involved in the trade
+        token_type: 'ETH', // The type of the token that this trade sold
+        sold: '10000000000000000' // The amount of that order\'s asset this trade sold in wei
       },
-
-      //Sell object
-      b: {
-
-        //The ID of the order involved in the trade
-        order_id: 1463,
-
-        //The type of the token that this trade sold
-        token_type: 'ERC721',
-
-        //The ID of the token that this trade sold
-        token_id: '21657668',
-
-        //The contract address of the token that this trade sold
-        token_address: '0xc5be437ad2fdee7e5884b594b4919f9f3bbce76f',
-
-        //The amount of that order\'s asset this trade sold
-        sold: '1'
+      b: { // Sell object
+        order_id: 1579, // The ID of the order involved in the trade
+        token_type: 'ERC721', // The type of the token that this trade sold
+        token_id: '1507', // The ID of the token that this trade sold
+        token_address: '0x72ec08386b4bbf0c344238b1bb892b2b279f1dcf', // The contract address of the token that this trade sold
+        sold: '1'  // The amount of that order\'s asset this trade sold
       },
-
-      //Time this trade occurred
-      timestamp: '2022-09-30T08:53:08.476028Z'
+      timestamp: '2022-09-29T10:33:26.39022Z' // Time this trade occurred
     }
 ```
 
@@ -1781,15 +1348,12 @@ getTrade('56715')
 <Tabs>
   <TabItem value="typescript" label="Typescript Core SDK">
 
-#### Request parameters
 
-| Parameter    | Description                  | Value                                      |
-| :----------- | :--------------------------- | :----------------------------------------- |
-| _ethAddress_ | Ethereum address of the user | 0x5D680Fbb3e60deCAbF62DfcACc56DB7d5964736a |
+SDK reference: [getUsers](https://docs.x.immutable.com/sdk-references/core-sdk-ts/1.0.0-beta.2/interfaces/index.getusersapiresponse)
 
-View all query parameters in [UsersApiGetUsersRequest](https://docs.x.immutable.com/sdk-references/core-sdk-ts/1.0.0-beta.2/interfaces/index.getusersapiresponse) interface
+### Request
 
-#### Example
+Get Stark keys for user with the address "0x5D680Fbb3e60deCAbF62DfcACc56DB7d5964736a":
 
 ```ts
 const getUserStarkKeys = async (ethAddress: string) => {
@@ -1807,11 +1371,11 @@ getUserStarkKeys('0x5D680Fbb3e60deCAbF62DfcACc56DB7d5964736a')
   });
 ```
 
-#### Response
+### Example response
 
 ```ts
 {
-  //List of Stark keys
+  // List of Stark keys
   accounts: [
     '0xd361e623760332811d06a976ceab515f3591b128f6ee15901991b69c9003b7',
   ];
@@ -1850,18 +1414,17 @@ getUserStarkKeys('0x5D680Fbb3e60deCAbF62DfcACc56DB7d5964736a')
 
 ### Get user balances
 
+The list of tokens owned by the user returned can be filtered by passing in parameters to this function.
+
 <Tabs>
   <TabItem value="typescript" label="Typescript Core SDK">
 
-#### Request parameters
 
-| Parameter | Description                  | Value                                      |
-| :-------- | :--------------------------- | :----------------------------------------- |
-| _owner_   | Ethereum address of the user | 0x5D680Fbb3e60deCAbF62DfcACc56DB7d5964736a |
+SDK reference: [listBalancesRequest](https://docs.x.immutable.com/sdk-references/core-sdk-ts/1.0.0-beta.2/interfaces/index.balancesapilistbalancesrequest)
 
-View all query parameters in [BalancesApiListBalancesRequest](https://docs.x.immutable.com/sdk-references/core-sdk-ts/1.0.0-beta.2/interfaces/index.balancesapilistbalancesrequest) interface
+### Request 
 
-#### Example
+The list of tokens owned by the user with address "0x5D680Fbb3e60deCAbF62DfcACc56DB7d5964736a":
 
 ```ts
 const getListBalances = async (owner: string) => {
@@ -1881,30 +1444,19 @@ getListBalances('0x5D680Fbb3e60deCAbF62DfcACc56DB7d5964736a')
   });
 ```
 
-#### Response
+### Example response
 
 ```ts
 {
   result: [
     {
-      //Address of the contract that represents this ERC20 token or empty for ETH
-      token_address: '',
-
-      //Symbol of the token
-      symbol: 'ETH',
-
-      //Amount which is currently inside the exchange
-      balance: '100000000000000000',
-
-      //Amount which is currently preparing withdrawal from the exchange
-      preparing_withdrawal: '0',
-
-      //Amount which is currently withdrawable from the exchange
-      withdrawable: '0'
+      token_address: '', // Address of the contract that represents this ERC20 token or empty for ETH
+      symbol: 'ETH', // Symbol of the token
+      balance: '100000000000000000', // Amount which is currently inside the exchange
+      preparing_withdrawal: '0', // Amount which is currently preparing withdrawal from the exchange
+      withdrawable: '0' // Amount which is currently withdrawable from the exchange
     }
   ],
-
-  //Generated cursor returned by previous query
   cursor: 'eyJfIjoiIiwic3ltYm9sIjoiRVRIIiwiY29udHJhY3RfYWRkcmVzcyI6IiIsImlteCI6IjEwMDAwMDAwMDAwMDAwMDAwMCIsInByZXBhcmluZ193aXRoZHJhd2FsIjoiMCIsIndpdGhkcmF3YWJsZSI6IjAifQ'
 }
 ```
@@ -1944,20 +1496,13 @@ getListBalances('0x5D680Fbb3e60deCAbF62DfcACc56DB7d5964736a')
 <Tabs>
   <TabItem value="typescript" label="Typescript Core SDK">
 
+SDK reference: [getBalance](https://docs.x.immutable.com/sdk-references/core-sdk-ts/1.0.0-beta.2/interfaces/index.balancesapigetbalancerequest)
 
-#### Request parameters
+### Request
 
-| Parameter | Description                        | Value                                      |
-| :-------- | :--------------------------------- | :----------------------------------------- |
-| _owner_   | Ethereum address of the user       | 0x5D680Fbb3e60deCAbF62DfcACc56DB7d5964736a |
-| _address_ | Token address to check the balance | 0x1facdd0165489f373255a90304650e15481b2c85 |
-
-View all query parameters in [BalancesApiGetBalanceRequest](https://docs.x.immutable.com/sdk-references/core-sdk-ts/1.0.0-beta.2/interfaces/index.balancesapigetbalancerequest) interface
-
-#### Example
+The balance of token "0x1facdd0165489f373255a90304650e15481b2c85" owned by the user with address "0x1facdd0165489f373255a90304650e15481b2c85": 
 
 ```ts
-
 const getBalanceToken = async (owner: string, address: string) => {
   const response = await client.getBalance({
     owner,
@@ -1979,25 +1524,16 @@ getBalanceToken(
   });
 ```
 
-#### Response
+### Example response
 
 ```ts
 
   {
-    //Address of the contract that represents this ERC20 token or empty for ETH
-    token_address: '0x1facdd0165489f373255a90304650e15481b2c85',
-
-    //Symbol of the token
-    symbol: 'IMX',
-
-    //Amount which is currently inside the exchange
-    balance: '0',
-
-    //Amount which is currently preparing withdrawal from the exchange
-    preparing_withdrawal: '0',
-
-    //Amount which is currently withdrawable from the exchange
-    withdrawable: '0'
+      token_address: '0x1facdd0165489f373255a90304650e15481b2c85', // Address of the contract that represents this ERC20 token or empty for ETH
+      symbol: 'IMX', // Symbol of the token
+      balance: '100000000000000000', // Amount which is currently inside the exchange
+      preparing_withdrawal: '0', // Amount which is currently preparing withdrawal from the exchange
+      withdrawable: '0' // Amount which is currently withdrawable from the exchange
   }
 ```
 
