@@ -1,6 +1,6 @@
 ---
-title: "Creating orders"
-slug: "/guides-new/orders"
+title: 'Creating orders'
+slug: '/guides-new/orders'
 keywords: [imx-wallets, imx-dx]
 ---
 
@@ -10,29 +10,60 @@ import TabItem from '@theme/TabItem';
 An order is a sale listing for an asset. It contains details like price and sale period. Some applications, such as marketplaces, may want to allow users to create orders in order to sell their assets.
 
 ### Where is the order created?
+
 When an order is created, it is added to Immutable X's orderbook smart contract on StarkEx. This shared orderbook is what enables all orders created on Immutable X to be available on every marketplace built on this protocol.
 
 ### Guides:
-* [Create orders using the Core SDK](#create-orders-using-the-core-sdk)
-* [Create orders on StarkNet](#create-orders-on-starknet)
+
+- [Create orders using the Core SDK](#create-orders-using-the-core-sdk)
+- [Create orders on StarkNet](#create-orders-on-starknet)
 
 ## Create orders using the Core SDK
 
 ### 1. Initialize the Core SDK
+
 In order to use the Core SDK, you need to [initialize it](./get-started#getting-started-with-the-core-sdk).
 
 ### 2. Generate signers
+
 Creating an order for a user requires a user's signature, so your application will need to create signers. See the guide on [how to generate signers](/docs/guides-new/generate-signers).
 
 ### 3. Set the order params
+
+Generate the order where the asset ID '12444074' of the collection with address '0xcef409c718153d2b9b28743e611f301af2229714' is sell for 0.01 ETH. 
+
 <Tabs>
-  <TabItem value="typescript" label="Typescript Core SDK">
-    Add description, if required.
-    <br/><br/>
+<TabItem value="typescript" label="Typescript Core SDK">
 
 ```ts
-// Add code
+
+// OPTIONAL: Generate the date when order expire, in this case after one month by now
+const timestamp = new Date(Date.now());
+timestamp.setMonth(timestamp.getMonth() + 1);
+const timestampUnix = Math.round(timestamp.getTime() / 1000); // Unix format is required
+
+const orderData = {
+  buy: { // The amount of tokens to purchase the asset
+    amount: '10000000000000000', // Wei amount, equal to 0.01 ETH
+    type: 'ETH',
+  },
+  sell: { // The asset to sell
+    amount: '1',
+    tokenAddress: '0xcef409c718153d2b9b28743e611f301af2229714',
+    tokenId: '12444074',
+    type: 'ERC721',
+  },
+  expiration_timestamp: timestampUnix, // OPTIONAL: order expiry date
+  fees: [  // OPTIONAL: Inclusion of either maker or taker fees
+    {
+      address: '0x383b14727ac2bD3923f1583789d5385C3A26f91E',
+      fee_percentage: 0.5, // equal to 0.5%
+    },
+  ],
+} as UnsignedOrderRequest;
+
 ```
+
   </TabItem>
   <TabItem value="kotlin" label="Kotlin (JVM) Core SDK">
     Add description, if required.
@@ -40,7 +71,8 @@ Creating an order for a user requires a user's signature, so your application wi
 
 ```kotlin
 // Add code
-``` 
+```
+
   </TabItem>
   <TabItem value="Swift" label="Swift Core SDK">
     Add description, if required.
@@ -49,6 +81,7 @@ Creating an order for a user requires a user's signature, so your application wi
 ```swift
 // Add code
 ```
+
   </TabItem>
   <TabItem value="go" label="Golang Core SDK">
     Add description, if required.
@@ -57,18 +90,53 @@ Creating an order for a user requires a user's signature, so your application wi
 ```go
 // Add code
 ```
+
   </TabItem>
 </Tabs>
 
 ### 4. Create the order
+
 <Tabs>
   <TabItem value="typescript" label="Typescript Core SDK">
-    Add description, if required.
-    <br/><br/>
+    
+
+Sdk reference: [createOrderRequest](https://docs.x.immutable.com/sdk-references/core-sdk-ts/1.0.0-beta.2/interfaces/index.cancelorderrequest)
+
+
+#### Request
 
 ```ts
-// Add code
+
+const createOrder = async (
+  wallet: WalletConnection,
+  orderData: UnsignedOrderRequest
+) => {
+  const response = await client.createOrder(wallet, orderData);
+  return response;
+};
+
+createOrder(wallet, orderData)
+  .then((result) => {
+    console.log(result);
+  })
+  .catch((e) => {
+    console.log(e);
+  });
+
 ```
+
+#### Example response
+
+```ts
+
+{
+  order_id: 7215, // ID of the created order
+  status: '', // Status of the created order
+  time: 0 // Timestamp of the created order
+}
+
+```
+
   </TabItem>
   <TabItem value="kotlin" label="Kotlin (JVM) Core SDK">
     Add description, if required.
@@ -76,7 +144,8 @@ Creating an order for a user requires a user's signature, so your application wi
 
 ```kotlin
 // Add code
-``` 
+```
+
   </TabItem>
   <TabItem value="Swift" label="Swift Core SDK">
     Add description, if required.
@@ -85,6 +154,7 @@ Creating an order for a user requires a user's signature, so your application wi
 ```swift
 // Add code
 ```
+
   </TabItem>
   <TabItem value="go" label="Golang Core SDK">
     Add description, if required.
@@ -93,18 +163,56 @@ Creating an order for a user requires a user's signature, so your application wi
 ```go
 // Add code
 ```
+
   </TabItem>
 </Tabs>
 
 ### 5. Cancel an order
+
+Cancel the order with ID 7215. Only the user that created the order can cancelled it.
+
 <Tabs>
   <TabItem value="typescript" label="Typescript Core SDK">
-    Add description, if required.
-    <br/><br/>
+
+
+Sdk reference: [cancelOrderRequest](https://docs.x.immutable.com/sdk-references/core-sdk-ts/1.0.0-beta.2/interfaces/index.cancelorderrequest)
+
+
+
+#### Request
 
 ```ts
-// Add code
+
+const cancelData = {
+    order_id: 7215
+  } as GetSignableCancelOrderRequest;
+
+  const cancelOrder = async (wallet: WalletConnection, cancelData: GetSignableCancelOrderRequest) => {
+    const response = await client.cancelOrder(wallet, cancelData);
+    return response;
+  }
+
+cancelOrder(wallet, cancelData)
+  .then((result) => {
+    console.log(result)
+  })
+  .catch((e) => {
+    console.log(e)
+  })
+
 ```
+
+#### Example response
+
+```ts
+
+{ 
+  order_id: 7215, // ID of the cancelled order
+  status: '' // New status of the order
+}
+
+```
+
   </TabItem>
   <TabItem value="kotlin" label="Kotlin (JVM) Core SDK">
     Add description, if required.
@@ -112,7 +220,8 @@ Creating an order for a user requires a user's signature, so your application wi
 
 ```kotlin
 // Add code
-``` 
+```
+
   </TabItem>
   <TabItem value="Swift" label="Swift Core SDK">
     Add description, if required.
@@ -121,6 +230,7 @@ Creating an order for a user requires a user's signature, so your application wi
 ```swift
 // Add code
 ```
+
   </TabItem>
   <TabItem value="go" label="Golang Core SDK">
     Add description, if required.
@@ -129,6 +239,7 @@ Creating an order for a user requires a user's signature, so your application wi
 ```go
 // Add code
 ```
+
   </TabItem>
 </Tabs>
 
